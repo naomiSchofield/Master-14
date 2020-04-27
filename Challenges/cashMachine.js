@@ -1,59 +1,58 @@
 // change pin ------------------------ working but need to add --------------------
 // New to stop the 'please enter pin prompt after 3 attempts and need to include create new pin function. 
 
-// let counter = 0
+let counter = 0
 
-// while (true) {
-//     let pin = prompt('Please enter pin')
+const toChangePin = (pin, newPin) => {
+    pin = prompt('Please enter pin')
 
-//     if (pin == '9999') {
-//         alert('correct pin')
-//         break
-//     }
-    
-//     if (pin != '9999' && counter < 3) {
-//             alert('incorrect pin')
-//             counter++
-//     }
+    while (true) {
 
-//     if (pin != '9999' && counter == 3) {
-//         alert('to many attempts')
-//         break
-//     }
-// }
+        if (pin == '9999') {
+            alert('correct pin') 
+            newPin = prompt('Enter New Pin')
+            return alert('Your pin has changed')
+        }
+            
+        else if (pin != '9999' && counter < 3) {
+                alert('incorrect pin')
+                counter++
+        }
 
-// let pin = ''
-// let newPin = prompt('Enter New Pin')
-
-
-// ____________Check Balance________everything works except the 'else'____________________
-
-
-const toCheckBalance = (userInputAcc, userInputPin) => {
-let accountNumber = 9999
-userInputAcc = prompt('What is your account number?')
-let pinNumber = 1111
-userInputPin = prompt('Enter Pin Number')
-let balance = 400
-
-    if (userInputAcc == accountNumber && userInputPin == pinNumber) {
-        alert( `balance is ${balance}`)
-    }
-    else if (userInputAcc !== accountNumber && userInputPin == pinNumber) {
-        alert('incorrect account number')
-    }
-    else if (userInputAcc == accountNumber && userInputPin !== pinNumber) {
-        alert('incorrect pin number')
-    }
-    else if (userInputAcc !== accountNumber && userInputPin !== pinNumber) {
-        alert ('All details are incorrect')
-    }
-    else {
-        alert('You are doing something wrong')
+        else if (pin != '9999' && counter == 3) {
+            alert('to many attempts')
+            break
+        }
     }
 }
 
-toCheckBalance()
+
+// ____________Check Balance___________________________
+
+
+// const toCheckBalance = (userInputAcc, userInputPin) => {
+// let accountNumber = 9999
+// userInputAcc = prompt('What is your account number?')
+// let pinNumber = 1111
+// userInputPin = prompt('Enter Pin Number')
+// let balance = 400
+
+//     if (userInputAcc == accountNumber && userInputPin == pinNumber) {
+//         alert( `balance is ${balance}`)
+//     }
+//     else if (userInputAcc !== accountNumber && userInputPin == pinNumber) {
+//         alert('incorrect account number')
+//     }
+//     else if (userInputAcc == accountNumber && userInputPin !== pinNumber) {
+//         alert('incorrect pin number')
+//     }
+//     else if (userInputAcc !== accountNumber && userInputPin !== pinNumber) {
+//         alert ('All details are incorrect')
+    
+//     }
+// }
+
+// toCheckBalance()
 
 //______________________Withdrawal__________________WORKING!_____________________
 
