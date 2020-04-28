@@ -19,5 +19,3 @@ Languages - JavaScript
 ## Prompts 
 
 ## Variables
-
-hey

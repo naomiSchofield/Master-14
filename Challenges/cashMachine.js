@@ -1,9 +1,9 @@
 // change pin ------------------------ working but need to add --------------------
 // New to stop the 'please enter pin prompt after 3 attempts and need to include create new pin function. 
 
-let counter = 0
+let counter = 1
 
-const toChangePin = (pin, newPin) => {
+const toChangePin = (pin) => {
     pin = prompt('Please enter pin')
 
     while (true) {
@@ -15,8 +15,8 @@ const toChangePin = (pin, newPin) => {
         }
             
         else if (pin != '9999' && counter < 3) {
-                alert('incorrect pin')
-                counter++
+            counter++
+            pin= prompt(`Incorrect pin, Please try again.${counter}`)
         }
 
         else if (pin != '9999' && counter == 3) {
@@ -25,6 +25,8 @@ const toChangePin = (pin, newPin) => {
         }
     }
 }
+
+toChangePin()
 
 
 // ____________Check Balance___________________________
