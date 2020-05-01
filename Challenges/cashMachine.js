@@ -1,108 +1,131 @@
 // change pin ------------------------ working but need to add --------------------
 // New to stop the 'please enter pin prompt after 3 attempts and need to include create new pin function. 
 
-let counter = 1
 
-const toChangePin = (pin) => {
-    pin = prompt('Please enter pin')
+let pinCounter = 0
+let accountNumber = 9999
+let pinNumber = 1111
+let balance = 400
 
-    while (true) {
+const depositCash = (depositAmount) => {
+    depositAmount = Number(prompt('Please enter the amount you would like to deposit'))
+    let balancePlusDeposit = balance + amount 
+    let tryAgain
 
-        if (pin == '9999') {
-            alert('correct pin') 
-            newPin = prompt('Enter New Pin')
-            return alert('Your pin has changed')
+    if (depositAmount > 250) {
+        tryAgain = prompt( 'Sorry, you can only deposit £250 at a time. Would you like to try agian?')
+    }
+        else if (tryAgain == 'Yes') {
+            depositCash() }
+        else if (tryAgain == No) {
+            goBack()
         }
-            
-        else if (pin != '9999' && counter < 3) {
-            counter++
-            pin= prompt(`Incorrect pin, Please try again.${counter}`)
-        }
-
-        else if (pin != '9999' && counter == 3) {
-            alert('to many attempts')
-            break
-        }
+    
+    else if (depositAmount) {
+    alert (`thanks for depositing ${depositAmount} your new balance is ${balancePlusDeposit}.`)
+    goBack()
     }
 }
 
-toChangePin()
+const toCheckBalance = (balance) => {
+    if(balance) {
+    alert( `balance is ${balance}`)
+    goBack()
+    }
+}
 
+const withdrawal = (withdrawalAmount) => {
+    withdrawalAmount = prompt('How much would you like to withdraw?')
+    newBalance = balance - withdrawalAmount
+      
+            if (withdrawalAmount < 250 && withdrawalAmount < balance) {
+            
+            alert (`Withdrawing ${withdrawalAmount} from ${accountNumber} new balance ${newBalance}.`)
+            goBack()
+        } 
+            
+            if (withdrawalAmount > 250) {
+            tryAgain = prompt( 'sorry, you can only withdraw £250 at a time. Would you like to try again?')
+                if (tryAgain = 'Yes'){
+                    withdrawal() }
+                else if (tryAgain = 'No'){
+                    goBack()
+                }
+            }
 
-// ____________Check Balance___________________________
+            if (withdrawalAmount > balance) {      
+             alert ('There is not enough money in your bank to complete this action.')
+            }
+        }
 
+const goBack = (goBackToMainMenu) => {
+    goBackToMainMenu = prompt('Would you like to go back to the main menu?')
+    if (goBackToMainMenu == 'yes') {
+        machineOptions ()
+    }
+    else if (goBackToMainMenu == 'No') {
+        alert('Thank you, have a nice day')
+    }
+}
 
-// const toCheckBalance = (userInputAcc, userInputPin) => {
-// let accountNumber = 9999
-// userInputAcc = prompt('What is your account number?')
-// let pinNumber = 1111
-// userInputPin = prompt('Enter Pin Number')
-// let balance = 400
+const changePin = (newPin) => {
+    newPin = prompt('please enter your new pin.')
 
-//     if (userInputAcc == accountNumber && userInputPin == pinNumber) {
-//         alert( `balance is ${balance}`)
-//     }
-//     else if (userInputAcc !== accountNumber && userInputPin == pinNumber) {
-//         alert('incorrect account number')
-//     }
-//     else if (userInputAcc == accountNumber && userInputPin !== pinNumber) {
-//         alert('incorrect pin number')
-//     }
-//     else if (userInputAcc !== accountNumber && userInputPin !== pinNumber) {
-//         alert ('All details are incorrect')
-    
-//     }
-// }
+    if (newPin) {
+    alert('Thank you, your pin has been changed.')
+    goBack()
+    return newPin
+    }
+    else {
+        alert('You must input a number')
+    }
+}
 
-// toCheckBalance()
+const blockPin = () => {
+    if(pinCounter == 3){
+    alert('You have entered the incorrect pin to many times, your account has been blocked.')
+    }
+}
 
-//______________________Withdrawal__________________WORKING!_____________________
+const machineOptions = (userChoice) => {
+    userChoice = prompt('Choose one of the following options. 1.Change pin 2.Check Balance 3.Withdraw 4.Deposit Cash. 5.View transactions 6.Change language ')
+    if (userChoice == 1) {
+    changePin()
+    }
+    if (userChoice == 2) {
+    toCheckBalance()
+    }
+    if (userChoice == 3) {
+    withdrawal()
+    }
+    if (userChoice == 4 ){
+    depositCash()
+    }
 
+    else {
+        alert("I haven't made those functions yet.")
+    }
+}
 
-// const withdrawal = (withdrawalAmount, accountNumber) => {
-//     accountNumber = prompt('What is your account number?')
-//     withdrawalAmount 
-//     let customerAccountNumber = 9999
-//     let balance = 100
-//     console.log(accountNumber)
+//This function is the start of the cash machine where the user will have to enter their user info to access other funtions. 
 
-//     if (accountNumber == customerAccountNumber){
-//         withdrawalAmount = prompt('How much would you like to withdraw?') 
-//         let newBalance = balance - withdrawalAmount
-//         if (withdrawalAmount < 250 && withdrawalAmount < balance) {
-//         alert (`Withdrawing ${withdrawalAmount} from ${accountNumber} new balance ${newBalance}.`)}  
-        
-//         if (withdrawalAmount > 250) {
-//         alert( 'sorry, you can only withdraw £250 at a time.') }
+const accessAccount = (userInputAcc, userInputPin) =>{
+    userInputAcc = prompt('What is your account number?')
+    userInputPin = prompt('Enter Pin Number')
 
-//         if (withdrawalAmount > balance) {      
-//          alert ('There is not enough money in your bank to complete this action.')
-//         }}
-    
-//    else if (accountNumber !== customerAccountNumber){
-//         alert('That account number is incorrect.')
-//     }
-// }
+    if (userInputAcc == accountNumber && userInputPin == pinNumber) {
+        alert('You have entered your details correctly.')
+        console.log("are you working?")
+        machineOptions()
+    }
+    else if (userInputPin != pinNumber && userInputAcc != accountNumber) {
+        ++pinCounter
+        alert('Incorrect pin.')
+        blockPin() 
+    }
+}
 
-// withdrawal()
-
-
-// //---------------------Deposit Cash---------------------WORKING-------------------
-
-// const depositCash = (amount) => {
-//     amount = Number(prompt('Please enter the amount you would like to deposit'))
-//     let balance = 5000 
-//     let newBalance = balance + amount 
-
-//     if (amount > 250) {
-//         alert( 'Sorry, you can only deposit £250 at a time.')
-//     }
-//     else {
-//     alert (`thanks for depositing ${amount} your new balance is ${newBalance}.`)
-//     }
-// }
-// depositCash()
-
+accessAccount()
 
 
 // //------------------------Change Language and currency----------- WORKING-----------------
@@ -174,3 +197,32 @@ toChangePin()
 
 // todaysTransactions()
 // // -------------------------------------------------------
+
+
+// const toChangePin = (pin) => {
+//     pin = prompt('Please enter pin')
+//     pinCounter=0
+
+//     if (pin == '9999') {
+//         alert('correct pin') 
+//         machineOptions = prompt('Choose one of the following options. 1.Change pin 2.View account 3.View transactions 4.Withdraw Cash 5.Change language 6.Deposit Cash.')
+//     }
+//     // if (options =="Change pin"){
+//     //     prompt('Please enter new pin')
+//     //     alert('Your pin has changed')
+//     // }
+
+//     pinAttempts :while (true) {
+
+//     if (pin != '9999' && pinCounter < 3) {
+//             pinCounter++
+//             pin= prompt(`Incorrect pin, Please try again.${pinCounter}`)
+//         }
+
+//      else if (pin != '9999' && pinCounter == 3) {
+//             alert('to many attempts')
+//              break pinAttempts
+//         }
+//     }
+// }
+// toChangePin()
