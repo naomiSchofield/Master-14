@@ -7,17 +7,78 @@ let accountNumber = 9999
 let pinNumber = 1111
 let balance = 400
 
+const goBack = (goBackToMainMenu) => {
+    goBackToMainMenu = prompt('Would you like to go back to the main menu?')
+    if (goBackToMainMenu == 'Yes') {
+        machineOptions ()
+    }
+    else if (goBackToMainMenu == 'No') {
+        alert('Thank you, have a nice day')
+    }
+}
+
+const goBackMandarin = (goBackToMainMenu) => {
+    goBackToMainMenu = prompt('您要返回主菜單嗎？')
+    if (goBackToMainMenu == 'Yes' || goBackToMainMenu == '是') {
+        machineOptions ()
+    }
+    if (goBackToMainMenu == 'No' || goBackToMainMenu =='沒有') {
+        alert(' 感謝您有一個愉快的一天')
+    }
+}
+
+const goBackGerman = (goBackToMainMenu) => {
+    goBackToMainMenu = prompt( "Möchten Sie zum Hauptmenü zurückkehren?")
+    if (goBackToMainMenu == 'Yes' || goBackToMainMenu == 'Ja') {
+        machineOptions ()
+    }
+     if (goBackToMainMenu == 'No' || goBackToMainMenu == 'Nein') {
+        alert('Danke, schönen Tag noch')
+    }
+}
+
+
+const machineOptions = (userChoice) => {
+    userChoice = prompt('Choose one of the following options. 1.Change pin 2.Check Balance 3.Withdraw 4.Deposit Cash. 5.View transactions 6.Change language 7.Change Currency')
+    if (userChoice == 1) {
+    changePin()
+    }
+    if (userChoice == 2) {
+    toCheckBalance()
+    }
+    if (userChoice == 3) {
+    withdrawal()
+    }
+    if (userChoice == 4 ){
+    depositCash()
+    }
+    if (userChoice == 5){
+    todaysTransactions()
+    }
+    if (userChoice == 6){
+    changeLanguage()
+    }
+    if (userChoice == 7){
+    changeCurrency()
+    }
+    else {
+        Alert('You must enter a number to choose an option')
+        goBack
+    }
+
+}
+
 const depositCash = (depositAmount) => {
     depositAmount = Number(prompt('Please enter the amount you would like to deposit'))
-    let balancePlusDeposit = balance + amount 
+    let balancePlusDeposit = balance + depositAmount 
     let tryAgain
 
     if (depositAmount > 250) {
         tryAgain = prompt( 'Sorry, you can only deposit £250 at a time. Would you like to try agian?')
     }
-        else if (tryAgain == 'Yes') {
+        if (tryAgain == 'Yes') {
             depositCash() }
-        else if (tryAgain == No) {
+        else if (tryAgain == 'No') {
             goBack()
         }
     
@@ -27,7 +88,7 @@ const depositCash = (depositAmount) => {
     }
 }
 
-const toCheckBalance = (balance) => {
+const toCheckBalance = () => {
     if(balance) {
     alert( `balance is ${balance}`)
     goBack()
@@ -58,16 +119,6 @@ const withdrawal = (withdrawalAmount) => {
             }
         }
 
-const goBack = (goBackToMainMenu) => {
-    goBackToMainMenu = prompt('Would you like to go back to the main menu?')
-    if (goBackToMainMenu == 'yes') {
-        machineOptions ()
-    }
-    else if (goBackToMainMenu == 'No') {
-        alert('Thank you, have a nice day')
-    }
-}
-
 const changePin = (newPin) => {
     newPin = prompt('please enter your new pin.')
 
@@ -81,33 +132,64 @@ const changePin = (newPin) => {
     }
 }
 
+//This function is the start of the cash machine where the user will have to enter their user info to access other funtions. 
+
+const todaysTransactions = (day) => {
+    day = prompt('What day would you like to see the transactions from?')
+
+    if (day == 'Monday'){
+    alert( 'account was emptied - you have been robbed')
+    goBack()
+    }
+    else if (day == 'Tuesday'){
+        alert ('account is full to the limit, you won the lottery')
+        goBack()
+    }
+    else if (day == 'Wednesday'){
+        alert ('withdrawn £30, interest of £20')
+        goBack()
+    }
+    else {
+        goBack()
+        }
+}
+
+const changeLanguage = (language = 'English') => {
+    console.log(language)
+    language = prompt('What language would you like? The options are German (enter 1) or Mandarin (enter 2).')
+    console.log(language)
+
+    if (language == ('2')) {
+        alert('语言现在是普通话') 
+        goBackMandarin()
+    }
+    if (language == ('1')) {
+        alert('Die Sprache ist jetzt Deutsch') 
+        goBackGerman()
+    }
+}
+const changeCurrency = (currency = 'GBP') => {
+    console.log(currency)
+    currency = prompt('What currency would you like to change to, the currencies available are EUR and RMB?')
+    console.log(currency)
+
+    if (currency == ('EUR')) {
+       let EURBalance = balance * 1.2
+        alert(`Currency is now EUR. Your balance is now ${EURBalance}EUR`) 
+        goBack()
+    }
+    if (currency == ('RMB')) {
+        let RMBBalance = balance*10
+        alert(`Currency is now RMB. Your balance is now ${RMBBalance}RMB`) 
+        goBack()
+    }
+}
+
 const blockPin = () => {
     if(pinCounter == 3){
     alert('You have entered the incorrect pin to many times, your account has been blocked.')
     }
 }
-
-const machineOptions = (userChoice) => {
-    userChoice = prompt('Choose one of the following options. 1.Change pin 2.Check Balance 3.Withdraw 4.Deposit Cash. 5.View transactions 6.Change language ')
-    if (userChoice == 1) {
-    changePin()
-    }
-    if (userChoice == 2) {
-    toCheckBalance()
-    }
-    if (userChoice == 3) {
-    withdrawal()
-    }
-    if (userChoice == 4 ){
-    depositCash()
-    }
-
-    else {
-        alert("I haven't made those functions yet.")
-    }
-}
-
-//This function is the start of the cash machine where the user will have to enter their user info to access other funtions. 
 
 const accessAccount = (userInputAcc, userInputPin) =>{
     userInputAcc = prompt('What is your account number?')
@@ -126,103 +208,3 @@ const accessAccount = (userInputAcc, userInputPin) =>{
 }
 
 accessAccount()
-
-
-// //------------------------Change Language and currency----------- WORKING-----------------
-
-// const changeLanguageAndCurrency = (language = 'English', currency = 'GBP') => {
-//     console.log(language)
-//     language = prompt('What language would you like?')
-//     console.log(language)
-
-//     if (language == ('Mandarin')) {
-//         alert('language is Mandarin') 
-//     }
-//     if (language == ('German')) {
-//         alert('language is German') 
-//     }
-//     console.log(currency)
-//     currency = prompt('What currency would you like to change to?')
-//     console.log(currency)
-
-
-//     if (currency == ('EUR')) {
-//         alert('Currency is now EUR') 
-//     }
-//     if (currency == ('RMB')) {
-//         alert('Currency is now RMB') 
-//     }
-// }
-
-// changeLanguageAndCurrency()
-
-
-//---------------------------Withdraw in new currency--------------Working except the 'to upper case' ----------------
-
-// const withdrawAltCurency = (amount, currency) => {
-//     amount = prompt('How much would you like to withdraw?')
-//     currency = prompt('Which currency would you like your cash in?') 
-//     currency.toUpperCase() //not working 
-
-//     if (currency == 'RMB') {
-//     alert(`please take your cash ${amount*10}`)
-//     }
-//     else if (currency == 'USD') {
-//     alert (`please take your cash ${amount*3}`)
-//     }
-//     else {
-//     alert (`sorry this machine doesn't have any ${currency}.`)}
-     
-// }
-// withdrawAltCurency()
-
-// //___________________________________Transactions list_____WORKING___________________
-
-// const todaysTransactions = (day) => {
-//     day = prompt('What day would you like to see the transactions from?')
-
-//     if (day == 'monday'){
-//     alert( 'account was emptied - you have been robbed')
-//     }
-//     else if (day == 'tuesday'){
-//         alert ('account is full to the limit, you won the lottery')
-//     }
-//     else if (day == 'wednesday'){
-//         alert ('withdrawn £30, interest of £20')
-//     }
-//     else {
-//         alert ('That is not a day on this planet')
-//     }
-// }
-
-// todaysTransactions()
-// // -------------------------------------------------------
-
-
-// const toChangePin = (pin) => {
-//     pin = prompt('Please enter pin')
-//     pinCounter=0
-
-//     if (pin == '9999') {
-//         alert('correct pin') 
-//         machineOptions = prompt('Choose one of the following options. 1.Change pin 2.View account 3.View transactions 4.Withdraw Cash 5.Change language 6.Deposit Cash.')
-//     }
-//     // if (options =="Change pin"){
-//     //     prompt('Please enter new pin')
-//     //     alert('Your pin has changed')
-//     // }
-
-//     pinAttempts :while (true) {
-
-//     if (pin != '9999' && pinCounter < 3) {
-//             pinCounter++
-//             pin= prompt(`Incorrect pin, Please try again.${pinCounter}`)
-//         }
-
-//      else if (pin != '9999' && pinCounter == 3) {
-//             alert('to many attempts')
-//              break pinAttempts
-//         }
-//     }
-// }
-// toChangePin()
