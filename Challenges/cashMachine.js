@@ -2,9 +2,7 @@
 // New to stop the 'please enter pin prompt after 3 attempts and need to include create new pin function. 
 
 
-let pinCounter = 0
-let accountNumber = 9999
-let pinNumber = 1111
+
 let balance = 400
 
 const goBack = (goBackToMainMenu) => {
@@ -62,8 +60,8 @@ const machineOptions = (userChoice) => {
     changeCurrency()
     }
     else {
-        Alert('You must enter a number to choose an option')
-        goBack
+    alert('You must enter a number to choose an option')
+    goBack
     }
 
 }
@@ -185,10 +183,23 @@ const changeCurrency = (currency = 'GBP') => {
     }
 }
 
+
+let pinCounter = 1
+let accountNumber = 9999
+let pinNumber = 1111
+
 const blockPin = () => {
-    if(pinCounter == 3){
-    alert('You have entered the incorrect pin to many times, your account has been blocked.')
+    console.log("I am working")
+
+    if(pinCounter < 3){
+    ++pinCounter
+    alert('Try again.')
+    accessAccount()
     }
+
+    else 
+    alert('You have entered the incorrect pin to many times, your account has been blocked.') /* This alert appears 3 times*/
+      
 }
 
 const accessAccount = (userInputAcc, userInputPin) =>{
@@ -197,12 +208,12 @@ const accessAccount = (userInputAcc, userInputPin) =>{
 
     if (userInputAcc == accountNumber && userInputPin == pinNumber) {
         alert('You have entered your details correctly.')
-        console.log("are you working?")
         machineOptions()
     }
-    else if (userInputPin != pinNumber && userInputAcc != accountNumber) {
-        ++pinCounter
-        alert('Incorrect pin.')
+
+    else if (userInputPin != pinNumber) {
+        console.log(pinCounter)
+        alert('Incorrect details.')
         blockPin() 
     }
 }
