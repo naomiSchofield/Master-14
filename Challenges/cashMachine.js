@@ -10,9 +10,9 @@ const goBack = (goBackToMainMenu) => {
     if (goBackToMainMenu == 'Yes') {
         machineOptions ()
     }
-    else if (goBackToMainMenu == 'No') {
+    else
         alert('Thank you, have a nice day')
-    }
+    
 }
 
 const goBackMandarin = (goBackToMainMenu) => {
@@ -60,7 +60,6 @@ const machineOptions = (userChoice) => {
     changeCurrency()
     }
     else {
-    alert('You must enter a number to choose an option')
     goBack
     }
 
@@ -198,7 +197,7 @@ const blockPin = () => {
     }
 
     else 
-    alert('You have entered the incorrect pin to many times, your account has been blocked.') /* This alert appears 3 times*/
+    alert('You have entered the incorrect pin to many times, your account has been blocked.') 
       
 }
 
@@ -217,5 +216,4 @@ const accessAccount = (userInputAcc, userInputPin) =>{
         blockPin() 
     }
 }
-
 accessAccount()
