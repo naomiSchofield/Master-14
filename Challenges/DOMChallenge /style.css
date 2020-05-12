@@ -20,6 +20,7 @@ body {
 
 input {
 	margin-left: 10px;
+	width: 190px;
 }
 
 #wrapper {
@@ -36,8 +37,8 @@ input {
 }
 
 .box {
-	width: 50%;
-	height: 50%;
+	width: 25%;
+	height: 25%;
 	margin: 10px;
 	background-color: #a02b2b;
 

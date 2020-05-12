@@ -7,7 +7,10 @@ let wrapper = document.getElementById("wrapper")
 
 const createBox = () => {
 
+
+    //i = 0 if I is less than inputBoxNum add 1 to i. 
     for (let i = 0; i < inputBoxNum.value; i++) {
+        // Every time this loops through everything inside the loop happens. 
         let box = document.createElement("div")
         document.body.appendChild(box)
         let generatedImage = document.createElement("img")
@@ -25,9 +28,11 @@ generateButton.addEventListener("click", () => {
     event.preventDefault()
     console.log(inputBoxNum.value)
     createBox()
-
 })
 
-removeButton.onclick = () => {
-    box.classList.toggle('hide')
+
+const removeImages = () => {
+    removeButton.onclick = () => {
+        box.classList.toggle('hide')
+    }
 }
